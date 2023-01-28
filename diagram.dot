@@ -1,0 +1,151 @@
+digraph "Diagram" {
+  splines = "ortho";
+  pad = "1.0";
+  nodesep = "0.60";
+  ranksep = "0.75";
+  fontname = "Sans-Serif";
+  fontsize = "15";
+  dpi = "200";
+  rankdir = "BT";
+  compound = "true";
+  fontcolor = "#222222";
+  edge [
+    color = "#D5871488",
+    penwidth = 2,
+    arrowhead = "dot",
+    arrowtail = "dot",
+  ];
+  node [
+    shape = "box",
+    style = "rounded",
+    fixedsize = true,
+    width = 1.7,
+    height = 1.7,
+    labelloc = "c",
+    imagescale = true,
+    fontname = "Sans-Serif",
+    fontsize = 8,
+    margin = 8,
+  ];
+  subgraph "Cdkv2ProgUserDeployStack" {
+    subgraph "cluster-SubGraph.Cdkv2ProgUserDeployStack" {
+      graph [
+        label = "Cdkv2ProgUserDeployStack",
+        labelloc = "b",
+        labeljust = "l",
+        margin = "10",
+        fontsize = "16",
+        penwidth = "2",
+        pencolor = "#888888",
+        style = "filled,rounded",
+        fillcolor = "#e4e4e4",
+      ];
+      subgraph "cluster-SubGraph.DemoUser" {
+        graph [
+          label = "DemoUser",
+          labelloc = "b",
+          labeljust = "l",
+          margin = "10",
+          fontsize = "16",
+          penwidth = "2",
+          pencolor = "#888888",
+          style = "filled,rounded",
+          fillcolor = "#d6d6d6",
+        ];
+        "Cdkv2ProgUserDeployStack/DemoUser/IDSecret" [
+          label = " IDSecret",
+          fontsize = 12,
+          image = "/home/walej/.nvm/versions/node/v18.2.0/lib/node_modules/cdk-dia/icons/aws/Service/Arch_Security-Identity-Compliance/64/Arch_AWS-Secrets-Manager_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 1.2,
+          height = 1.466,
+        ];
+        "Cdkv2ProgUserDeployStack/DemoUser/CustomRole" [
+          label = " CustomRole",
+          fontsize = 12,
+          image = "/home/walej/.nvm/versions/node/v18.2.0/lib/node_modules/cdk-dia/icons/aws/Service/Arch_Security-Identity-Compliance/64/Arch_AWS-Identity-and-Access-Management_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 1.2,
+          height = 1.466,
+        ];
+        "Cdkv2ProgUserDeployStack/DemoUser/azdp_lab" [
+          label = " azdp_lab",
+          fontsize = 12,
+          image = "/home/walej/.nvm/versions/node/v18.2.0/lib/node_modules/cdk-dia/icons/aws/Service/Arch_Security-Identity-Compliance/64/Arch_AWS-Identity-and-Access-Management_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 1.2,
+          height = 1.466,
+        ];
+        "Cdkv2ProgUserDeployStack/DemoUser/AccessKey" [
+          label = " AccessKey",
+          fontsize = 12,
+          image = "/home/walej/.nvm/versions/node/v18.2.0/lib/node_modules/cdk-dia/icons/aws/Service/Arch_Security-Identity-Compliance/64/Arch_AWS-Identity-and-Access-Management_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 1.2,
+          height = 1.466,
+        ];
+        "Cdkv2ProgUserDeployStack/DemoUser/Secret" [
+          label = " Secret",
+          fontsize = 12,
+          image = "/home/walej/.nvm/versions/node/v18.2.0/lib/node_modules/cdk-dia/icons/aws/Service/Arch_Security-Identity-Compliance/64/Arch_AWS-Secrets-Manager_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 1.2,
+          height = 1.466,
+        ];
+        "Cdkv2ProgUserDeployStack/DemoUser/Group_AzureDevOpsUser" [
+          label = "\nGroup_AzureDevOpsUser",
+          fontsize = 12,
+          image = "/home/walej/.nvm/versions/node/v18.2.0/lib/node_modules/cdk-dia/icons/aws/Service/Arch_Security-Identity-Compliance/64/Arch_AWS-Identity-and-Access-Management_64@5x.png",
+          imagescale = "true",
+          imagepos = "tc",
+          penwidth = "0",
+          shape = "node",
+          fixedsize = "true",
+          labelloc = "b",
+          width = 1.2,
+          height = 1.682,
+        ];
+      }
+    }
+  }
+  "Cdkv2ProgUserDeployStack/DemoUser/CustomRole" -> "Cdkv2ProgUserDeployStack/DemoUser/IDSecret" [
+    dir = "both",
+  ];
+  "Cdkv2ProgUserDeployStack/DemoUser/azdp_lab" -> "Cdkv2ProgUserDeployStack/DemoUser/Group_AzureDevOpsUser" [
+    dir = "both",
+  ];
+  "Cdkv2ProgUserDeployStack/DemoUser/AccessKey" -> "Cdkv2ProgUserDeployStack/DemoUser/azdp_lab" [
+    dir = "both",
+  ];
+  "Cdkv2ProgUserDeployStack/DemoUser/Secret" -> "Cdkv2ProgUserDeployStack/DemoUser/AccessKey" [
+    dir = "both",
+  ];
+  "Cdkv2ProgUserDeployStack/DemoUser/Group_AzureDevOpsUser" -> "Cdkv2ProgUserDeployStack/DemoUser/CustomRole" [
+    dir = "both",
+  ];
+}
