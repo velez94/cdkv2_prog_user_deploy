@@ -2,7 +2,7 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  
 
-- [DevSecOps with AWS- Integrate Azure DevOps for CDK deployments Part-1](#devsecops-with-aws--integrate-azure-devops-for-cdk-deployments-part-1)
+- [DevSecOps with AWS- Integrate Azure DevOps for CDK deployments](#devsecops-with-aws--integrate-azure-devops-for-cdk-deployments)
 - [Hands On](#hands-on)
   - [Requirements](#requirements)
   - [AWS Services and tools](#aws-services-and-tools)
@@ -18,7 +18,7 @@
 
 # DevSecOps with AWS- Integrate Azure DevOps for CDK deployments 
 
-Please Visit 
+Please Visit [DevSecOps with AWS- Integrate Azure DevOps for CDK deployments Part-1 ](https://dev.to/avelez/devsecops-with-aws-integrate-azure-devops-for-cdk-deployments-part-1-c4e) 
 
 _**Level 300**_
 
