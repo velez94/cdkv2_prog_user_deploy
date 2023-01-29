@@ -22,8 +22,9 @@ iam_properties:
     from: "2023-01-01T00:00:00Z"
     up: "2023-06-30T23:59:59Z"
   assume_roles:
-    - arn: "arn:aws:iam::123456789014:role/cdk-hnb659fds-deploy-role-571340586587-us-east-2"
-    - arn: "arn:aws:iam::123456789014:role/cdk-hnb659fds-lookup-role-571340586587-us-east-2"
+    - arn: "arn:aws:iam::123456789014:role/cdk-hnb659fds-deploy-role-123456789014-us-east-2"
+    - arn: "arn:aws:iam::123456789014:role/cdk-hnb659fds-lookup-role-123456789014-us-east-2"
+    - arn: "arn:aws:iam::123456789014:role/cdk-hnb659fds-file-publishing-role-123456789014-us-east-2"
 
 
 # Tags definitions align with corporation instructions
