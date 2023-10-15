@@ -19,7 +19,8 @@ stack = Cdkv2ProgUserDeployStack(app, "Cdkv2ProgUserDeployStack",
                                  )
 Aspects.of(app).add(AwsSolutionsChecks(verbose=True))
 NagSuppressions.add_stack_suppressions(stack=stack, suppressions=[{
-    "id": "AwsSolutions-SMG4", "reason": "Is not necessary, is a user Key"}
+    "id": "AwsSolutions-SMG4", "reason": "Is not necessary, is a user Key"},
+    {"id": "AwsSolutions-IAM5", "reason": "Exception ECR auth"},
 ])
 set_tags(stack=stack, tags=props["tags"])
 app.synth()

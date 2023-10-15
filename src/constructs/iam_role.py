@@ -18,6 +18,7 @@ class IAMSetup(Construct):
         user_name = props.get("iam_properties", {}).get("user_name", f"{project_name}_user")
         context = props.get("iam_properties", {}).get("context", {"from": "2023-01-01T00:00:00Z",
                                                                   "up": "2023-06-30T23:59:59Z"})
+        ecr_repositories = props.get("ecr_repositories", False)
 
         rs = []
         if roles:
@@ -27,6 +28,7 @@ class IAMSetup(Construct):
             rs = [f"arn:aws:iam::{Aws.ACCOUNT_ID}:role/cdk-hnb659fds-cfn-exec-role-{Aws.ACCOUNT_ID}-{Aws.REGION}"]
         # Creating statement
         st = iam.PolicyStatement(actions=["sts:AssumeRole"], effect=iam.Effect.ALLOW, resources=rs)
+
 
         ext_id = secretsmanager.Secret(self, "IDSecret", secret_name=f"/{project_name}/SecretExternalID",
                                        generate_secret_string=secretsmanager.SecretStringGenerator(
@@ -76,5 +78,30 @@ class IAMSetup(Construct):
         # Grant User assume role
         self.role.grant_assume_role(self.group)
 
-        # Audit user Activity
+        # Add additional permissions for ecr
+        if ecr_repositories:
+            rsc= []
+            for e in ecr_repositories:
+                rsc.append(f"arn:aws:ecr:{e['region']}:{e['account']}:repository/{e['name']}")
+            st_ecr = iam.PolicyStatement(actions=[
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:GetRepositoryPolicy",
+                "ecr:DescribeRepositories",
+                "ecr:ListImages",
+                "ecr:DescribeImages",
+                "ecr:BatchGetImage",
+                "ecr:InitiateLayerUpload",
+                "ecr:UploadLayerPart",
+                "ecr:CompleteLayerUpload",
+                "ecr:PutImage"],
+                effect=iam.Effect.ALLOW,
+                resources=rsc)
+            st_auth_ecr = iam.PolicyStatement(actions=["ecr:GetAuthorizationToken"],
+                                              effect=iam.Effect.ALLOW,
+                                              resources=["*"]
+                                          )
+            self.role.add_to_policy(st_ecr)
+            self.role.add_to_policy(st_auth_ecr)
+            # Audit user Activity
         CfnOutput(self, "RoleARN", value=self.role.role_arn, description=f"Role ARN ")
